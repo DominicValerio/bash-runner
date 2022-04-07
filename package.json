@@ -7,6 +7,10 @@
   "engines": {
     "vscode": "^1.66.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DominicValerio/bash-runner"
+  },
   "categories": [
     "Programming Languages"
   ],
@@ -55,13 +59,13 @@
     "type": "object",
     "title": "Run Code configuration",
     "bash-runner.executor": {
-      "type": "object",
+      "type": "string",
       "default": "Bash",
       "description": "Set the executor for Bash scripts.",
       "scope": "resource"
     },
     "properties": {
-      
+      "type": "object"
     }
   },
 	"scripts": {
