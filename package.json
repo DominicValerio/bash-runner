@@ -59,7 +59,7 @@
     "title": "Run Code configuration",
     "bash-runner.executor": {
       "type": "string",
-      "default": "Bash",
+      "default": "bash",
       "description": "Set the executor for Bash scripts.",
       "scope": "resource"
     },
