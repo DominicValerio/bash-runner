@@ -1,69 +1,53 @@
 {
   "name": "bash-runner",
-	"displayName": "Bash Runner",
-	"description": "",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.66.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
+  "displayName": "Bash Runner",
+  "description": "Run bash scripts",
+  "version": "0.0.1",
+  "publisher": "Dominic",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "bash"
+  ],
+
+  "activationEvents": [
     "onCommand:bash-runner.run",
-		"onStartupFinished"
-	],
-	"main": "./dist/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "bash-runner.run",
-				"title": "Hello World",
-				"icon": "$(play)"
-			}
-		]
-	},
-	"keybindings": [
-		{
-			"command": "code-runner.run",
-			"key": "ctrl+alt+n"
-		}
-	],
-	"menus": {
-		"editor/title/run": [
-			{
-				"when": "bash-runner.showRunIconInEditorTitleMenu",
-				"command": "bash-runner.run",
-				"group": "navigation"
-			}
-		],
-		"editor/context": [
-			{
-				"when": "bash-runner.showRunIconInEditorTitleMenu",
-				"command": "bash-runner.run",
-				"group": "navigation"
-			}
-		],
-		"explorer/context": [
-			{
-				"when": "bash-runner.showRunIconInEditorTitleMenu",
-				"command": "code-runner.run",
-				"group": "navigation"
-			}
-		]
-	},
-	"configuration": {
-		"type": "object",
-		"title": "Run Code configuration",
-		"properties": {
-			"bash-runner.showRunIconInEditorTitleMenu": {
-				"type": "boolean",
-				"default": true,
-				"description": "Whether to show 'Run Code' icon in editor title menu.",
-				"scope": "resource"
-			}
-		}
-	},
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "bash-runner.run",
+        "title": "Run Code",
+        "icon": "$(play)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "bash-runner.run",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/run": [
+        {
+          "command": "bash-runner.run",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "bash-runner.run",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
 	"scripts": {
 		"vscode:prepublish": "npm run package",
 		"compile": "webpack",
