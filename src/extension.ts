@@ -6,33 +6,42 @@ import { basename, dirname, extname, join } from "path";
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "bash-runner" is now active!');
-
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('bash-runner.run', (fileUri: vscode.Uri) => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Bash Runner!');
-		//let terminal = vscode.window.activeTerminal
-		//if(!terminal) 
-		//vscode.window.activeTerminal?.name
-		let terminal = vscode.window.createOutputChannel("code");
-		//console.log(fileUri)
-		let active = vscode.window.activeTextEditor
-		if(active) {
-			let filepath = active.document.fileName
-			terminal.append(`bash ${filepath}`)
+	let run = vscode.commands.registerCommand('bash-runner.run', (fileUri: vscode.Uri) => {
+		let config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('bash-runner', fileUri)
+		//console.log(config.inspect('properties'))
+		const terminalName = "Bash Run"
+		let command: string | undefined = config.get('executor')
+		if(command === undefined) command = "Bash"
+		const langid = "shellscript"
+		let terminal: vscode.Terminal | undefined = vscode.window.activeTerminal
+		if(terminal === undefined) {
+			vscode.window.showInformationMessage("Making new terminal")
+			function inner(): vscode.Terminal {
+				for(const term of vscode.window.terminals) {
+					if(term.name === terminalName) {
+						return term
+					}
+				}
+				return vscode.window.createTerminal(terminalName)
+			}
+			terminal = inner()
 		}
 		
-		
+		let document: vscode.TextDocument;
+		const editor = vscode.window.activeTextEditor;
+		if (editor) {
+			document = editor.document
+			const fileBasename = basename(document.fileName);
+			terminal.sendText(`${command} ${fileBasename}`)
+			
+			terminal.show()
+		}
 	});
 	
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(run);
 }
 
 // this method is called when your extension is deactivated

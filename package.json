@@ -3,7 +3,7 @@
   "displayName": "Bash Runner",
   "description": "Run bash scripts",
   "version": "0.0.1",
-  "publisher": "Dominic",
+  "publisher": "dominic-valerio",
   "engines": {
     "vscode": "^1.66.0"
   },
@@ -23,29 +23,45 @@
     "commands": [
       {
         "command": "bash-runner.run",
-        "title": "Run Code",
+        "title": "Run Bash File",
         "icon": "$(play)"
       }
     ],
     "menus": {
       "editor/context": [
         {
+					"when": "editorLangId == shellscript",
           "command": "bash-runner.run",
           "group": "navigation"
         }
       ],
       "editor/title/run": [
         {
+					"when": "editorLangId == shellscript",
           "command": "bash-runner.run",
           "group": "navigation"
         }
       ],
       "explorer/context": [
         {
+					"when": "editorLangId == shellscript",
           "command": "bash-runner.run",
           "group": "navigation"
         }
       ]
+    }
+  },
+  "configuration": {
+    "type": "object",
+    "title": "Run Code configuration",
+    "bash-runner.executor": {
+      "type": "object",
+      "default": "Bash",
+      "description": "Set the executor for Bash scripts.",
+      "scope": "resource"
+    },
+    "properties": {
+      
     }
   },
 	"scripts": {
