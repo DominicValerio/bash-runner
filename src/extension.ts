@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 		//console.log(config.inspect('properties'))
 		const terminalName = "Bash Run"
 		let command: string | undefined = config.get('executor')
-		if(command === undefined) command = "Bash"
+		if(command === undefined) command = "bash"
 		const langid = "shellscript"
 		let terminal: vscode.Terminal | undefined = vscode.window.activeTerminal
 		if(terminal === undefined) {
