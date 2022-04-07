@@ -1,6 +1,6 @@
 {
   "name": "bash-runner",
-  "displayName": "Bash Runner",
+  "displayName": "Bash Run Button",
   "description": "Run bash scripts",
   "version": "0.0.1",
   "publisher": "dominic-valerio",
