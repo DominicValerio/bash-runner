@@ -1,6 +1,6 @@
 ## Features
 
-Makes a simple run button when you view bash scripts
+VS Code extension that makes a simple run button whenever you view bash scripts
 
 ## Extension Settings
 
